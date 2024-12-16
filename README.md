@@ -1,76 +1,80 @@
 # ChatbotSample
 
-ChatbotSample is an Android application for **Pepper the robot** that
-demonstrates how to implement a chatbot thanks to the **Android QiSDK**.
-(https://qisdk.softbankrobotics.com)
+ChatbotSample is an Android application for **Pepper the Robot** that demonstrates how to implement a chatbot using the **Android QiSDK**. This project combines a local **qichatbot** and an online **Dialogflow** agent to enable Pepper to engage in structured and casual conversations effectively.
 
+## Project Overview
+This project showcases a hybrid chatbot for Pepper Robot, leveraging local qichatbot capabilities for robot-specific interactions and an online Dialogflow agent for general queries. The chatbot demonstrates structured dialogues aligned with a functional scenario and casual discussions for broader engagement.
 
-This sample relies on an online **Dialogflow** agent and a local **qichatbot**.
-The chat engine utilizes both chatbots to provide a dialog whose
-progress is structured according to a functional scenario while providing
-casual discussion.
+## Features
+- **Local QiChatbot**: Handles Pepper-specific conversations, including robot information and simple actions.
+- **Dialogflow Integration**: Manages general inquiries not covered by qichatbot.
+- **Hybrid Chat Engine**: Ensures seamless transition between structured and open-ended dialogues.
+- **Interactive Behavior**: Pepper uses speech, gestures, and visual outputs for a dynamic experience.
+- **Customizable Intents**: Adapt both chatbots to fit specific application needs.
 
-* The local qichatbot conversation related to pepper including information about the robot and some simple robot actions.
-* The Dialogflow chatbot deals with some general questions that doesn't exist in the qichatbot topics.
+## Minimum Configuration
+- **Pepper Robot SDK 2.9**
+- **API Level 3**
 
+## Getting Started
+### Dialogflow Agent Setup
+This sample uses a **Dialogflow v1 agent**. To run the application, you need to set up your own agent via the Dialogflow console (https://console.dialogflow.com).
 
-## Minimum configuration
+#### Creating a Dialogflow Agent
+1. Log in to the Dialogflow console.
+2. Create a new agent and ensure the *V1 API* is selected in the *General* tab under settings.
 
-* Pepper 1.9
-* API Level 3
+#### Client Access Token
+Add your Dialogflow agent’s **client access token** to the Android project:
+1. Locate the **global gradle.properties** file in your *~/.gradle* folder.
+2. Add the following line:
+   ```
+   CHATBOT_SAMPLE_DIALOGFLOW_TOKEN=your_client_access_token
+   ```
+   This keeps the token secure and out of version control.
 
+### Populating the Dialogflow Agent
+You can populate your Dialogflow agent manually or import a predefined agent.
 
-## Getting started ##
+#### Importing the Sample Agent
+1. Open your Dialogflow agent settings.
+2. Select *Export and Import* > *Restore from zip*.
+3. Follow the instructions to upload the provided [DialogflowChatbotAgent.zip] file.
 
-For the sake of simplicity, this sample uses a **Dialogflow v1 agent**.
-The class DialogflowChatbot.java shows how to interact with such an agent.
+This sample agent includes fallback intents for responding to general questions.
 
-### Creating a Dialogflow agent ###
+## Project Structure
+- **/src**: Contains Java source code for integrating and managing the hybrid chatbot.
+- **/res**: Resources such as layouts, strings, and drawable assets.
+- **/docs**: Documentation and usage guides.
+- **/tests**: Automated tests for chatbot reliability.
 
-In order to run the application, you need to create first your own agent
-via the Dialogflow console (https://console.dialogflow.com).
+## Additional Resources
+### UML Diagrams
+- [Class Diagram](classDiagram.plantuml): Provides an overview of the application’s structure.
+- [Sequence Diagram](sequenceDiagram.plantuml): Illustrates the flow of interactions.
 
-Ensure you select *V1 API* in the *General* tab of the settings page.
+You can view these diagrams using the *PlantUML integration* plugin in Android Studio or via http://www.plantuml.com/plantuml.
 
-### Client access token ###
-Once your agent is created, you should make the provided **client access token**
-available to the Android project. This token is needed to connect the
-application to the agent.
+## Future Enhancements
+- **Enhanced Natural Language Understanding**: Upgrade to Dialogflow v2 for advanced capabilities.
+- **Personalized Conversations**: Add user profiling for more tailored responses.
+- **Advanced Analytics**: Implement logging and analytics for monitoring chatbot interactions.
 
-In the **global gradle.properties** file located in your *~/.gradle* folder,
-add the following line:
+## Contribution
+Contributions are welcome! If you’d like to contribute:
+1. Fork the repository.
+2. Create a new branch for your feature or bug fix.
+3. Submit a pull request with a detailed description of changes and testing results.
 
-```
-CHATBOT_SAMPLE_DIALOGFLOW_TOKEN=your_client_access_token
-```
-This avoids keeping the token under version control.
+## License
+This project is licensed under the MIT License. See the LICENSE file for details.
 
-### Populating the agent ###
+## Contact
+For questions, suggestions, or collaboration inquiries, please contact:
+- **Developer**: Abdullah Shareef
+- **Email**: abdullahshareef7945512@gmail.com
 
-Your Dialogflow agent may be populated either by hand (via the console)
-or by importing an already made agent. Learning how to create Dialogflow
-intents goes beyond the scope of this sample. Therefore we provide you
-with a sample agent description you just have to import in your own agent.
+---
+**University of Trier | Pepper Robot Project | ChatbotSample**
 
-In the Dialogflow console:
-* Go to the *Settings* page of the agent
-* Choose the *Export and Import* option
-* Click on *Restore from zip*
-* Then follow instructions to upload the [DialogflowChatbotAgent.zip] file.
-
-This sample agent provides fallback intents that reply to some general questions.
-
-
-## Additional resources ##
-
-#### Overview UML diagrams ####
-A PlantUML [class diagram](classDiagram.plantuml) and a
-[sequence diagram](sequenceDiagram.plantuml)
-are available at the root of this project.
-
-The *PlantUML integration* plugin is needed to display them in AndroidStudio.
-Alternatively you can visit http://www.plantuml.com/plantuml.
-
-## Licence ##
-
-See the [COPYING](COPYING.md) file for the license.
